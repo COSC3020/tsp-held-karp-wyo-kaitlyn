@@ -1,3 +1,4 @@
+[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=12835374&assignment_repo_type=AssignmentRepo)
 # Traveling Salesperson Problem -- Held-Karp Algorithm
 
 This exercise is about the Traveling Salesperson Problem I mentioned in the
@@ -46,3 +47,17 @@ Test your new function; I've provided some basic testing code in `code.test.js`.
 What is the worst-case asymptotic time complexity of your implementation? What
 is the worst-case asymptotic memory complexity? Add your answer, including your
 reasoning, to this markdown file.
+
+Held-Karp should go through every permutation of the nodes to find the shortest
+route.  Doing this results in a time of $n!$.  However, with memoization the subset
+rotue of each city is stored, so instead of having to go through every permutation of nodes
+you just have to go through every permutation of subsets.  This reduces that time complexity
+to $2^n$.
+
+Additionally, the code has two for loops, one that iterates through the length of the matrix ($n$), 
+and one that iterates through the length of the matrix, decreasing each time by one ($n-1$).  This 
+results in $n(n-1)$ time, which reduces to $n^2$.  This means the worst case time complexity is 
+$\Theta(2^n + n^2)$.
+
+Memory wise, the cache has to store every subset, so $2^n$, and the matrix $n$, so the memory complexity
+is $\Theta(2^n n)$, as the size of the subsets depends on the size of the matrix.  
